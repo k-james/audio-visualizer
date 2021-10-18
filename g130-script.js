@@ -3,7 +3,6 @@
 <script src="https://cdn.jsdelivr.net/npm/three-orbitcontrols@2.1.2/OrbitControls.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js"></script>
 <script scr="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
-
     var noise = new SimplexNoise();
     var tracks = [
         {
