@@ -15,26 +15,25 @@
 </head>
 
 <body>
-    <div id="content">
+   <div id="control_embed">
         <div class="control-toolbar" id="controls">
             <button id="skip-back-btn" class="control-btn">
-                <i id="back-icon" class="icon back">back</i>
+                <i id="back-icon" class="material-icons">skip_previous</i>
             </button>
             <button id="play-pause-btn" class="control-btn">
-                <i id="pause-show-icon" class="icon play hide">pause</i>
-                <i id="play-show-icon" class="icon play hide">play</i>
+                <i id="pause-show-icon" class="material-icons">pause_circle_filled</i>
+                <i id="play-show-icon" class="material-icons">play_arrow</i>
             </button>
             <button id="skip-next-btn" class="control-btn">
-                <i id="next-icon" class="icon mext">next</i>
+                <i id="next-icon" class="material-icons">skip_next</i>
             </button>
-            <div class="pull-right">
-                <span id="track-name"></span>
-                <span id="artist-name"></span>
             </div>
-        </div>
-
+    </div>
+<!-- separate controls and output -->
+    <div id="content">
         <div id="out"></div>
     </div>
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js"></script>
@@ -189,16 +188,6 @@
                 wireframe: true
             });
 
-            var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-            plane.rotation.x = -0.5 * Math.PI;
-            plane.position.set(0, 30, 0);
-            group.add(plane);
-
-            var plane2 = new THREE.Mesh(planeGeometry, planeMaterial);
-            plane2.rotation.x = -0.5 * Math.PI;
-            plane2.position.set(0, -30, 0);
-            group.add(plane2);
-
             var icosahedronGeometry = new THREE.IcosahedronGeometry(10, 4);
             var lambertMaterial = new THREE.MeshLambertMaterial({
                 color: 0xff00ee,
@@ -252,9 +241,6 @@
                 var upperMaxFr = upperMax / upperHalfArray.length;
                 var upperAvgFr = upperAvg / upperHalfArray.length;
                 /* use the reduced values to modulate the 3d objects */
-                // these are the planar meshes above and below the sphere
-                makeRoughGround(plane, modulate(upperAvgFr, 0, 1, 0.5, 4));
-                makeRoughGround(plane2, modulate(lowerMaxFr, 0, 1, 0.5, 4));
                 // this modulates the sphere's shape.
                 makeRoughBall(ball, modulate(Math.pow(lowerMaxFr, 0.8), 0, 1, 0, 8), modulate(upperAvgFr, 0, 1, 0, 4));
 
